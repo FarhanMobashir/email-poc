@@ -124,7 +124,7 @@ export default function Home() {
           }}
         >
           <h1 className={styles.title}>
-            Sasta Referral Candy
+            Sasta Email Template Editor
           </h1>
           <p style={{
             textAlign: 'center',
