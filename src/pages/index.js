@@ -2,10 +2,109 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { use, useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [template, setTemplate] = useState('');
+
+  const [introText, setIntroText] = useState('this is intro text')
+
+  let brandData = {
+    "brandName": "Nutr",
+    "firstName": "Mohit",
+    "image1": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667756/common/Group_1000002675_aigpqs.png",
+    "image2": "https://brand-templates-data-prod.s3.us-east-2.amazonaws.com/Nutr/NutrImage2.png",
+    "image3": "https://brand-templates-data-prod.s3.us-east-2.amazonaws.com/Nutr/NutrImage3.png",
+    "brandLogo": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667625/common/Nutr_x_youshd_sx079u.png",
+    "combinedLogo": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667625/common/Nutr_x_youshd_sx079u.png",
+    "shopUrl": "https://thenutr.com/",
+    "productDescription": "Best product of the world",
+    "rewardsCPC": 1,
+    "rewardsCPC100": 100,
+    "rewardsMaximum": 1000,
+    "instagramHandle": "realnutr",
+    "tiktokHandle": "tiktoknutr",
+    "instagram": true,
+    "bgColor": "wheat",
+    "textColor": "maroon",
+    "buttonColor": "maroon",
+    "LINKCOLOR": "blue",
+    // editable text
+    "introText": "This is default text",
+  }
+
+  useEffect(() => {
+    const getTemplate = async () => {
+      const res = await fetch('/api/get-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+          {
+            "brandName": "Nutr",
+            "firstName": "Mohit",
+            "image1": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667756/common/Group_1000002675_aigpqs.png",
+            "image2": "https://brand-templates-data-prod.s3.us-east-2.amazonaws.com/Nutr/NutrImage2.png",
+            "image3": "https://brand-templates-data-prod.s3.us-east-2.amazonaws.com/Nutr/NutrImage3.png",
+            "brandLogo": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667625/common/Nutr_x_youshd_sx079u.png",
+            "combinedLogo": "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677667625/common/Nutr_x_youshd_sx079u.png",
+            "shopUrl": "https://thenutr.com/",
+            "productDescription": "Best product of the world",
+            "rewardsCPC": 1,
+            "rewardsCPC100": 100,
+            "rewardsMaximum": 1000,
+            "instagramHandle": "realnutr",
+            "tiktokHandle": "tiktoknutr",
+            "instagram": true,
+            "bgColor": "wheat",
+            "textColor": "maroon",
+            "buttonColor": "maroon",
+            "LINKCOLOR": "blue",
+            // editable text
+            "introText": "This is default text",
+          }
+        ),
+      })
+
+      const data = await res.json();
+
+
+
+      data.template = data.template.replace("This is default text", `${introText}`)
+      setTemplate(data.template);
+      // insertIntroText(data.template)
+
+    }
+
+
+    getTemplate()
+  }, []);
+
+
+  // write a function to use the above brandData as {{brandData.brandName}} in the template
+  const SimpleHandleBarParser = (template) => {
+    let parsedTemplate = template;
+    for (let key in brandData) {
+      parsedTemplate = parsedTemplate.replace(`{{brandData.${key}}}`, brandData[key]);
+    }
+    return parsedTemplate;
+  }
+  
+  useEffect(() => {
+    // keep the template updated with the intro text
+    let introElement = document.getElementById('intro-text-email');
+    if (introElement) {
+      introElement.innerHTML = SimpleHandleBarParser(introText);
+      // introElement.innerHTML = introText;
+    }
+
+
+  },[introText ])
+
+
   return (
     <>
       <Head>
@@ -15,108 +114,62 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.js</code>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            padding: '1rem',
+          }}
+        >
+          <h1 className={styles.title}>
+            Sasta Referral Candy
+          </h1>
+          <p style={{
+            textAlign: 'center',
+          }}>
+            Get started by editing
           </p>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+            <h1>Template</h1>
+            <h4>
+              Introduction text
+            </h4>
+            <textarea
+            value={introText}
+            onChange={(e) => {
+              console.log(e.target.value)
+              setIntroText(e.target.value)
+            }}
+            style={{
+              width: '100%',
+              height: '100px',
+              padding: '1rem',
+              fontSize: '1rem',
+            }}
             >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+            </textarea>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div dangerouslySetInnerHTML={{ __html: template }} />
           </div>
         </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
       </main>
     </>
   )
