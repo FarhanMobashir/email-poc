@@ -16,7 +16,8 @@ const getEmailTemplate = (req, res) => {
         ...body
     });
     res.status(200).json({
-        template: htmlToSend
+        template: htmlToSend,
+        bareTemplate: emailTemplate
     })
 }
 

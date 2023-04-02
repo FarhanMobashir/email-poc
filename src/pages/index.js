@@ -2,15 +2,21 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
-
+import handlebars from 'handlebars/dist/cjs/handlebars'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
+
 export default function Home() {
   const [template, setTemplate] = useState('');
 
-  const [introText, setIntroText] = useState('this is intro text');
+  const [introText, setIntroText] = useState('hey every one this is {{brandData.brandName}}. Our description is {{brandData.productDescription}}. We are giving you {{brandData.rewardsCPC}}% cashback on your first purchase. Hurry up and shop now.');
+
+  const [buttonColor, setButtonColor] = useState('');
+  const [textColor, setTextColor] = useState('');
+  const [bgColor, setBgColor] = useState('');
+  const [LINKCOLOR, setLINKCOLOR] = useState('');
 
   const [showAvailableData, setShowAvailableData] = useState(false);
 
@@ -75,10 +81,21 @@ export default function Home() {
       const data = await res.json();
 
 
+      let bare = data.bareTemplate;
 
-      data.template = data.template.replace("This is default text", `${introText}`)
-      setTemplate(data.template);
-      // insertIntroText(data.template)
+      // // compile the template with handlebars
+      // const bareTemplate = handlebars.compile(bare)
+      // console.log(bareTemplate({
+      //   ...brandData
+      // }))
+
+      // data.template = data.template.replace("This is default text", `${introText}`)
+      setTemplate(data.bareTemplate);
+      setButtonColor(brandData.buttonColor);
+      setTextColor(brandData.textColor);
+      setBgColor(brandData.bgColor);
+      setLINKCOLOR(brandData.LINKCOLOR);
+
 
     }
 
@@ -95,17 +112,26 @@ export default function Home() {
     }
     return parsedTemplate;
   }
+
+  function renderTemplate() {
+    return { __html: handlebars.compile(template)(
+      {
+        ...brandData,
+        // compile introText with handlebars
+        introText: SimpleHandleBarParser(introText),
+        buttonColor: buttonColor,
+        textColor: textColor,
+        bgColor: bgColor,
+        LINKCOLOR: LINKCOLOR,
+      }
+    ) };
+  }
+
+  
   
   useEffect(() => {
-    // keep the template updated with the intro text
-    let introElement = document.getElementById('intro-text-email');
-    if (introElement) {
-      introElement.innerHTML = SimpleHandleBarParser(introText);
-      // introElement.innerHTML = introText;
-    }
-
-
-  },[introText ])
+    
+  },[introText])
 
 
   return (
@@ -169,7 +195,7 @@ export default function Home() {
                   top: '100px',
                   left: '0',
                   zIndex: '100',
-                  
+
                 }}
                 >
                   <pre>
@@ -192,6 +218,39 @@ export default function Home() {
             }}
             >
             </textarea>
+            <h4>Button Color</h4>
+            <input
+              type="color"
+              value={buttonColor}
+              onChange={(e) => {
+                setButtonColor(e.target.value)
+              }}
+            />
+            <h4>Text Color</h4>
+            <input
+              type="color"
+              value={textColor}
+              onChange={(e) => {
+                setTextColor(e.target.value)
+              }}
+            />
+            <h4>Background Color</h4>
+            <input
+              type="color"
+              value={bgColor}
+              onChange={(e) => {
+                setBgColor(e.target.value)
+              }}
+            />
+            <h4>Link Color</h4>
+            <input
+              type="color"
+              value={LINKCOLOR}
+              onChange={(e) => {
+                setLINKCOLOR(e.target.value)
+              }}
+            />
+
           </div>
           <div
             style={{
@@ -200,7 +259,9 @@ export default function Home() {
               alignItems: 'center',
             }}
           >
-            <div dangerouslySetInnerHTML={{ __html: template }} />
+            <div dangerouslySetInnerHTML={
+              renderTemplate()
+            } />
           </div>
         </div>
 
