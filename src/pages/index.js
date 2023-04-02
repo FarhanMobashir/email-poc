@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { use, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
@@ -159,7 +158,7 @@ export default function Home() {
               content={
                 <div>
                   {
-                    Object.keys(brandData).map((key) => {
+                   brandData && Object.keys(brandData).map((key) => {
                       return (
                         <div
                         key={key}
