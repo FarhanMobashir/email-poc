@@ -3,6 +3,10 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { use, useEffect, useState } from 'react'
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -141,9 +145,34 @@ export default function Home() {
         >
           <div>
             <h1>Template</h1>
+            <hr/>
             <h4>
               Introduction text
             </h4>
+            <hr/>
+            <h4
+            id="available-data"
+            >Available Data to use</h4>
+            <ReactTooltip
+              anchorId="available-data"
+              place="top"
+              content={
+                <div>
+                  {
+                    Object.keys(brandData).map((key) => {
+                      return (
+                        <div
+                        key={key}
+                        >
+                          <span style={{fontWeight: 'bold'}}>{key}</span> : {brandData[key]}
+                        </div>
+                      )
+                    }
+                    )
+                  }
+                  </div>
+              }
+            />
             <textarea
             value={introText}
             onChange={(e) => {
@@ -151,7 +180,7 @@ export default function Home() {
               setIntroText(e.target.value)
             }}
             style={{
-              width: '100%',
+              width: '400px',
               height: '100px',
               padding: '1rem',
               fontSize: '1rem',
