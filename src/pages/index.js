@@ -2,8 +2,6 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
-import { Tooltip as ReactTooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
 
 
 
@@ -12,7 +10,9 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [template, setTemplate] = useState('');
 
-  const [introText, setIntroText] = useState('this is intro text')
+  const [introText, setIntroText] = useState('this is intro text');
+
+  const [showAvailableData, setShowAvailableData] = useState(false);
 
   let brandData = {
     "brandName": "Nutr",
@@ -151,27 +151,33 @@ export default function Home() {
             <hr/>
             <h4
             id="available-data"
-            >Available Data to use</h4>
-            <ReactTooltip
-              anchorId="available-data"
-              place="top"
-              content={
-                <div>
-                  {
-                   brandData && Object.keys(brandData).map((key) => {
-                      return (
-                        <div
-                        key={key}
-                        >
-                          <span style={{fontWeight: 'bold'}}>{key}</span> : {brandData[key]}
-                        </div>
-                      )
-                    }
-                    )
-                  }
-                  </div>
-              }
-            />
+            onMouseEnter={() => {
+              setShowAvailableData(true)
+            }}
+            onMouseLeave={() => {
+              setShowAvailableData(false)
+            }}
+>Available Data to use</h4>
+            {
+              showAvailableData && (
+                <div
+                style={{
+                  padding: '1rem',
+                  backgroundColor: 'lightgray',
+                  borderRadius: '1rem',
+                  position: 'absolute',
+                  top: '100px',
+                  left: '0',
+                  zIndex: '100',
+                  
+                }}
+                >
+                  <pre>
+                    {JSON.stringify(brandData, null, 2)}
+                  </pre>
+                </div>
+              )
+            }
             <textarea
             value={introText}
             onChange={(e) => {
