@@ -195,7 +195,6 @@ export default function Home() {
                   top: '100px',
                   left: '0',
                   zIndex: '100',
-
                 }}
                 >
                   <pre>
