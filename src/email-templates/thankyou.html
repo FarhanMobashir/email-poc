@@ -1,0 +1,456 @@
+<style>
+    @keyframes bounce {
+
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-20px);
+        }
+
+        60% {
+            transform: translateY(-10px);
+        }
+    }
+
+
+    .main-container {
+        width: 100%;
+        background: #FFFFFF;
+        border: 1px solid #CCCCCC;
+        border-radius: 8px;
+        max-width: 100%;
+    }
+
+
+    .ModalCard_contentWrapper-v3 {
+        padding: 4px 20px 4px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ModalCard_titleWrapper-v3 {
+        display: flex;
+        align-items: center;
+        gap: 1px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 28px;
+        line-height: 1rem;
+        color: #000000;
+        margin-bottom: 10px;
+    }
+
+    .ModalCard_contentWrapper-v3 div {
+        padding: 6px 2px 0px 2px;
+        font-family: "Anybody", sans-serif;
+        font-size: 20px;
+    }
+
+    .ModalCard_contentWrapper-v3 .with-bg-v3 {
+        background-image: url("https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677843476/common/free_star_4_c0q0xs.png");
+        color: #5B46A6;
+        overflow: visible;
+        background-repeat: no-repeat;
+        border-radius: 8px;
+        padding: 14px;
+        padding-left: 10px;
+        margin-top: 8px;
+        text-align: center;
+        margin-left: -5px;
+    }
+
+    .signup-button-v3 {
+        padding: 8px 0px;
+        display: inline-block;
+        border-radius: 10px;
+        line-height: 1;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid transparent;
+        background-color: black;
+        color: rgb(255, 255, 255);
+        width: 100%;
+    }
+
+    .youshd-signup-button-subtext-v3 {
+        font-size: 10px;
+        font-weight: 400;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .background-image-v3 {
+        background-image: url("https://res.cloudinary.com/dqsbiaqqj/image/upload/v1675145231/common/free_star_xione6.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        border: 5px solid black;
+    }
+
+    .image-container-v3 {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+    }
+
+    .youshd-thankyou-description-v3 {
+        font-family: "Montserrat", sans-serif;
+        color: #262626;
+        font-size: 13px;
+        line-height: 24px;
+        font-weight: 400;
+        margin-top: 4px;
+        margin-bottom: 10px;
+        width: 90%;
+        padding: 0px;
+    }
+
+    .youshd-copy-container-v3 {
+        margin-top: -6px;
+    }
+
+
+
+    .ywm-bottom-container-v3 {
+        display: flex;
+        gap: 1px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ywm-powered-by-v3 {
+        font-size: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        padding-top: 3px;
+        color: #9A9A9A;
+        margin: 0;
+        padding: 0;
+    }
+
+    .ywm-bottom-logo-v3 {
+        width: 60px;
+        height: auto;
+        padding: 0;
+        margin-top: 2px;
+    }
+
+    .youshd-middle-container-v3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -18px;
+    }
+
+    .youshd-image-container-v3 {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    .dollar-img-right-v3 {
+        width: 25px;
+        height: auto;
+        position: absolute;
+        bottom: 20px;
+        right: -10px;
+        transform: rotate(10deg);
+        animation: bounce 1s ease-in-out;
+
+    }
+
+    .like-img-center-v3 {
+        width: 30px;
+        height: auto;
+        position: absolute;
+        bottom: 50px;
+        right: 72px;
+        transform: rotate(-10deg);
+        animation: bounce 1s ease-in-out;
+    }
+
+    .ywm-product-image-v3 {
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
+    }
+
+    .sign-up-btn-mobile-v3 {
+        display: none;
+    }
+
+
+
+    .thankyou-social-icons-v3 {
+        width: 40px;
+        height: auto;
+        margin-left: auto;
+    }
+
+    .youshd-bottom-logo-container-v3 {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0;
+    }
+
+    .youshd-thankyou-copy-1 {
+        font-family: "Montserrat", sans-serif;
+        color: #000000A6;
+        font-size: 16px;
+        font-weight: 400;
+        margin: 4px 0px;
+        line-height: 18px;
+    }
+
+    .youshd-thankyou-copy-2 {
+        font-family: "Montserrat", sans-serif;
+        color: #000000A6;
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 12px;
+        margin-top: 4px;
+        line-height: 18px;
+    }
+
+    .youshd-link-v3 {
+        color: #5B46A6;
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+
+    .border-line-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .border-line-purple {
+        height: 2px;
+        background: #5B46A6;
+        flex-basis: 30%;
+        border-radius: 6px 0px 0px 6px;
+        border: none;
+    }
+
+    .border-line-grey {
+        height: 2px;
+        background: #F1F2FF;
+        flex-basis: 70%;
+        border-radius: 6px;
+        border: none;
+    }
+
+    .big-heading-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .big-heading {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        color: #5B46A6;
+    }
+
+    .big-heading-em {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 15px;
+        color: #5B46A6;
+    }
+
+    .top-story-banner-container {
+        background: #5B46A6;
+        border-radius: 7px 7px 0px 0px;
+    }
+
+    .top-story-banner-container {
+        background: #5B46A6;
+        border-radius: 7px 7px 0px 0px;
+        display: none;
+    }
+
+    .top-story-banner-text {
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        color: #F8F9FF;
+        padding: 10px 0px;
+        margin: 0px;
+    }
+
+
+
+
+
+    @media screen and (max-width: 600px) {
+
+        .ywm-bottom-container-v3 {
+            display: flex;
+            gap: 1px;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0px;
+        }
+
+
+
+        .ywm-powered-by-v3 {
+            font-size: 12px;
+            font-family: "Montserrat", sans-serif;
+            padding-top: 3px;
+        }
+
+        .ywm-bottom-logo-v3 {
+            width: 45px;
+            height: auto;
+        }
+
+        .ModalCard_titleWrapper-v3 {
+            display: flex;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1rem;
+            padding: 0px 10px;
+            color: #000000;
+        }
+
+        .ModalCard_contentWrapper-v3 div {
+            font-size: 16px;
+        }
+
+        .ModalCard_contentWrapper-v3 .with-bg-v3 {
+            background-image: url("https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677843113/common/free_star_3_ipyfat.png");
+            overflow: visible;
+            padding: 10px;
+            margin-left: -5px;
+        }
+
+        .youshd-thankyou-description-v3 {
+            font-size: 12px;
+            line-height: 20px;
+            margin-bottom: 0px;
+            width: 100%;
+            padding: 0px;
+        }
+
+        .signup-button-v3 {
+            padding: 8px 0px;
+        }
+
+        .youshd-image-container-v3 {
+            display: flex;
+            gap: 18px;
+        }
+
+        ..ywm-product-image-v3 {
+            width: 130px;
+        }
+    }
+</style>
+
+<div>
+    <div class="top-story-banner-container" id="story-container">
+        {{#if instaStory}}
+        <p class="top-story-banner-text" id="story-container-text">
+            Post an <b>IG Story now.</b> Get <b>20% OFF</b> next time.
+        </p>
+        {{/if}}
+    </div>
+    <div class="ModalCard_contentWrapper-v3" id="youshd-thankyou-widget-variant" data-variant="variant-3.1.3">
+
+        <div class="ModalCard_titleWrapper-v3">
+            <div>Get paid to post!
+            </div>
+            <!--             <div class="">Shop.</div>
+            <div class="">Post.</div>
+            <div class="with-bg-v3">Earn.</div> -->
+            <img src="https://res.cloudinary.com/dqsbiaqqj/image/upload/v1678102055/common/Frame_1000002669_2_o1ynrq.png"
+                alt="social icons" class="thankyou-social-icons-v3" />
+        </div>
+        <div class="border-line-wrapper">
+            <hr class="border-line-purple" />
+            <hr class="border-line-grey" />
+        </div>
+        <div class="big-heading-container">
+            
+            {{#if maxIncentive}}
+            <p class="big-heading">
+                Make <span class="big-heading-em">$10 cash</span> instantly
+            </p>
+            <p class="big-heading" id="max-incentive">
+                Up to <span class="big-heading-em">${{maxIncentive}}</span>
+            </p>
+            {{else}}
+            <p class="big-heading">
+                Make <span class="big-heading-em">cash</span> instantly
+            </p>
+            {{/if}}
+        </div>
+        <div style="display:flex">
+            <div class="youshd-copy-container-v3">
+                <!--               <p class="youshd-thankyou-copy-1">
+                
+                <span class="youshd-link-v3">Earn up to $1000</span>  by sharing a fun post about Yummers. 
+              </p> -->
+
+                <p class="youshd-thankyou-copy-2" id="main-copy">
+                    Earn cash by sharing a fun Reel or TikTok about {{brandName}}.
+                    Your follower count doesn’t matter.
+                </p>
+
+            </div>
+            <div class="youshd-middle-container-v3">
+
+                <div class="youshd-image-container-v3">
+                                  <img class="like-img-center-v3" src="https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677833304/common/Group_1000002647_1_e6tqbn.png"/>
+
+                                  <img class="dollar-img-right-v3" src="https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677832711/common/Group_1000002647_uenaxy.png"/>
+                    <!--                 <img class="ywm-product-image-v3"
+                    src="https://res.cloudinary.com/dqsbiaqqj/image/upload/v1678877754/common/Instagram_5_ecnxfk.png" /> -->
+                    <img class="ywm-product-image-v3"
+                        src="{{
+                        productImage
+                        }}"
+                        />
+
+                </div>
+            </div>
+        </div>
+        <div class="ywm-bottom-container-v3">
+            <button id="youshd-thankyou-signup-btn" class="signup-button-v3">
+                Sign up! <span class="youshd-signup-button-subtext-v3">It Takes less than 30 seconds</span>
+            </button>
+            <div>
+
+                <div class="youshd-bottom-logo-container-v3" style="padding:0;">
+                    <p class="ywm-powered-by-v3">Powered By</p>
+                    <img class="ywm-bottom-logo-v3"
+                        src="https://res.cloudinary.com/dqsbiaqqj/image/upload/v1677821872/common/Frame_1000002667_bzxkhg.png"
+                        alt="" />
+                </div>
+            </div>
+        </div>

@@ -8,7 +8,7 @@ const getEmailTemplate = (req, res) => {
 
     const body = req.body
     // read the email template
-    const emailTemplate = fs.readFileSync(path.join(process.cwd(), 'src', 'email-templates', 'post-purchase-dynamic-cta.html'), 'utf8')
+    const emailTemplate = fs.readFileSync(path.join(process.cwd(), 'src', 'email-templates', 'thankyou.html'), 'utf8')
     // compile the template with handlebars
     const template = handlebars.compile(emailTemplate)
     // feed the user data into the template

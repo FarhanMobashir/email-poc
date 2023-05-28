@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import handlebars from 'handlebars/dist/cjs/handlebars'
+import Link from 'next/link'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -262,6 +263,9 @@ export default function Home() {
               renderTemplate()
             } />
           </div>
+          <Link href="/thankyou">
+            thhankyou
+          </Link>
         </div>
 
       </main>
