@@ -80,7 +80,8 @@ export default function ThankYou() {
                     brandName : "Nutr",
                     instaStory: true,
                     maxIncentive : 1000,
-                    productImage: "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1684685644/common/pexels-arthouse-studio-6017742_2_w8lanr.png"
+                    productImage: "https://res.cloudinary.com/dqsbiaqqj/image/upload/v1684685644/common/pexels-arthouse-studio-6017742_2_w8lanr.png",
+                    storyDiscountPercentage: null,
                 }
             )
         };
